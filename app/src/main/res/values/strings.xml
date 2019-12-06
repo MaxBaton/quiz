@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">Android Викторина</string>
+    <string name="action_settings">Настройки</string>
+    <string name="reference">Справка</string>
+    <string name="number_of_choices">Количество вариантов ответов</string>
+    <string name="time_to_answer">Время на ответ(секунды)</string>
+    <string name="number_of_choices_description">Отобразить 2, 4, 6 или 8 вариантов ответа</string>
+    <string name="time_to_anwer_description">10, 20, 30, или 40 секунд на ответ</string>
+    <string name="categories">Категории</string>
+    <string name="categories_description">Категории для включения в викторину</string>
+    <string name="guess_question">Ответить на вопрос</string>
+    <string name="results">%1$d попыток, %2$.02f%% верно</string>
+    <string name="points">%2$.02f%%</string>
+    <string name="incorrect_answer">Неверно!</string>
+    <string name="default_category_message">
+        Минимум 1 категория должна быть выбрана. Спорт - категория по умолчанию.
+    </string>
+    <string name="restarting_quiz">Викторина начнется с ваших новых настроек</string>
+    <string name="question">Вопрос %1$d из %2$d</string>
+    <string name="reset_quiz">Сброс викторины</string>
+    <string name="question_description">Текущий вопрос викторины</string>
+    <string name="default_category">Sport</string>
+    <string name="title_activity_settings">Настройки</string>
+    <string name="Play">Играть</string>
+    <string name="Settings">Настройки</string>
+    <string name="ResultsTable">Таблица результатов</string>
+</resources>

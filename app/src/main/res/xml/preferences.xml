@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <ListPreference
+        android:entries="@array/guesses_list"
+        android:entryValues="@array/guesses_list"
+        android:key="pref_numberOfChoices"
+        android:title="@string/number_of_choices"
+        android:summary="@string/number_of_choices_description"
+        android:persistent="true"
+        android:defaultValue="4" />
+
+    <MultiSelectListPreference
+        android:entries="@array/categories_list_for_settings"
+        android:entryValues="@array/categories_list"
+        android:key="pref_categoriesToInclude"
+        android:title="@string/categories"
+        android:summary="@string/categories_description"
+        android:persistent="true"
+        android:defaultValue="@array/categories_list" />
+    <ListPreference
+        android:entries="@array/timer_list"
+        android:entryValues="@array/timer_list"
+        android:key="pref_timeToAnswer"
+        android:title="@string/time_to_answer"
+        android:summary="@string/time_to_anwer_description"
+        android:persistent="true"
+        android:defaultValue="30" />
+</PreferenceScreen>

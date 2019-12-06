@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="categories_list">
+        <item>History</item>
+        <item>Cinema</item>
+        <item>Geography</item>
+        <item>Sport</item>
+    </string-array>
+
+    <string-array name="categories_list_for_settings">
+        <item>История</item>
+        <item>Кино</item>
+        <item>География</item>
+        <item>Спорт</item>
+    </string-array>
+
+    <string-array name="guesses_list">
+        <item>2</item>
+        <item>4</item>
+        <item>6</item>
+        <item>8</item>
+    </string-array>
+    <string-array name="timer_list">
+        <item>10</item>
+        <item>20</item>
+        <item>30</item>
+        <item>40</item>
+        <item>Без таймера</item>
+    </string-array>
+</resources>
