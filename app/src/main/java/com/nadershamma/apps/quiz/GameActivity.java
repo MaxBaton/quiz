@@ -66,13 +66,6 @@ public class GameActivity extends AppCompatActivity {
      Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
      setSharedPreferences();
      dataBaseHelper = new DataBaseHelper(this);
-     checkFirstLaunch();
-    }
-
-    private void checkFirstLaunch() {
-        if (getIntent().getExtras().getInt("number") <= -1){
-            finish();
-        }
     }
 
     @Override

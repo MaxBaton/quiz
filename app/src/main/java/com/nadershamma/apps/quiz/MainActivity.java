@@ -39,7 +39,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnResultsTable.setOnClickListener(this);
         dataBaseHelper = new DataBaseHelper(this);
         sqLiteDatabase = dataBaseHelper.getWritableDatabase();
-        checkFirstGameActivityLaunch();
     }
 
     private void readData() {
@@ -87,13 +86,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
        });
        builder.show();
    }
-
-    private void checkFirstGameActivityLaunch() {
-        Intent intent = new Intent(this,GameActivity.class);
-        intent.putExtra("number",num);
-        num++;
-        startActivity(intent);
-    }
 
     @Override
    public void onClick(View v) {
