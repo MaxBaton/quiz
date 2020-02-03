@@ -2,10 +2,12 @@ package com.nadershamma.apps.quiz;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -16,6 +18,9 @@ import android.widget.Button;
 import com.nadershamma.apps.database.DataBaseHelper;
 import com.nadershamma.apps.database.Fields;
 
+import java.util.HashSet;
+import java.util.Map;
+
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
     private Button btnPlay;
@@ -24,7 +29,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private int number;
     private DataBaseHelper dataBaseHelper;
     private SQLiteDatabase sqLiteDatabase;
-    private int num = -1;
+    private HashSet<String> categories;
+    private int sizeCategories;
+    private Map<String,Object> map;
+    private SharedPreferences preferences;
+    private WarningCategories warningCategories;
+    private GameActivity gameActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +49,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnResultsTable.setOnClickListener(this);
         dataBaseHelper = new DataBaseHelper(this);
         sqLiteDatabase = dataBaseHelper.getWritableDatabase();
+        warningCategories = new WarningCategories();
+        gameActivity = new GameActivity();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        map = (Map<String, Object>) preferences.getAll();
+        categories = (HashSet<String>) map.get("pref_categoriesToInclude");
+        sizeCategories = categories.size();
+        if (sizeCategories == 0) {
+                categories.add(getString(R.string.default_category));
+                warningCategories.show(getSupportFragmentManager(), "warning");
+            }
     }
 
     private void readData() {
@@ -92,7 +117,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
        switch (v.getId()){
        case R.id.btnPlay:
        Intent intentPlay = new Intent(this, GameActivity.class);
-       intentPlay.putExtra("number",num);
        startActivity(intentPlay);
        break;
        case R.id.btnSettings:

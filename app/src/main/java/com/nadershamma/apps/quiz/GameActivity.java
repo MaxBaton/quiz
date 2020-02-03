@@ -20,16 +20,14 @@ import java.util.Objects;
 public class GameActivity extends AppCompatActivity {
    public static final String CHOICES = "pref_numberOfChoices";
    public static final String TIMER = "pref_timeToAnswer";
-   public static final String GATEGORIES = "pref_categoriesToInclude";
+   public static final String CATEGORIES = "pref_categoriesToInclude";
    private boolean preferencesChanged = true;
    private GameActivityFragment gameActivityFragment;
    private QuizViewModel quizViewModel;
    private SharedPreferences.OnSharedPreferenceChangeListener preferencesChangeListener;
    private static DataBaseHelper dataBaseHelper;
 
-    public static DataBaseHelper getDataBaseHelper(){ return dataBaseHelper; }
-
-   private void setSharedPreferences() {
+    private void setSharedPreferences() {
         // set default settings
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
 
@@ -45,7 +43,7 @@ public class GameActivity extends AppCompatActivity {
             quizViewModel.setGuessRows(PreferenceManager.getDefaultSharedPreferences(this)
                     .getString(CHOICES, null));
             quizViewModel.setCategoriesSet(PreferenceManager.getDefaultSharedPreferences(this)
-                    .getStringSet(GATEGORIES, null));
+                    .getStringSet(CATEGORIES, null));
             quizViewModel.setTimeToAnswer(PreferenceManager.getDefaultSharedPreferences(this)
                     .getString(TIMER, null));
             gameActivityFragment.resetQuiz();
@@ -58,7 +56,7 @@ public class GameActivity extends AppCompatActivity {
     @Override
  protected void onCreate(Bundle savedInstanceState) {
      super.onCreate(savedInstanceState);
-     quizViewModel = ViewModelProviders.of(this).get(QuizViewModel.class);ViewModelProviders.of(this).get(QuizViewModel.class);
+     quizViewModel = ViewModelProviders.of(this).get(QuizViewModel.class);
      preferencesChangeListener = new PreferenceChangeListener(this);
      setContentView(R.layout.fragment_game);
      Toolbar toolbar = findViewById(R.id.toolbar);
@@ -97,21 +95,23 @@ public class GameActivity extends AppCompatActivity {
       return super.onOptionsItemSelected(item);
     }
 
-   public QuizViewModel getQuizViewModel() { return quizViewModel; }
-
-   public static String getCHOICES() { return CHOICES; }
-
-   public static String getTimer(){return TIMER;}
-
-   public static String getCategories() { return GATEGORIES; }
-
-   public void setPreferencesChanged(boolean preferencesChanged) { this.preferencesChanged = preferencesChanged; }
-
     @Override
-   protected void onPause() {
-       super.onPause();
-       if(gameActivityFragment.getCountDownTimer()!=null){
-           gameActivityFragment.stopTimer();
-       }
-   }
+    protected void onPause() {
+        super.onPause();
+        if(gameActivityFragment.getCountDownTimer()!=null){
+            gameActivityFragment.stopTimer();
+        }
+    }
+
+    public QuizViewModel getQuizViewModel() { return quizViewModel; }
+
+    public static String getCHOICES() { return CHOICES; }
+
+    public static String getTimer(){return TIMER;}
+
+    public static String getCategories() { return CATEGORIES; }
+
+    public void setPreferencesChanged(boolean preferencesChanged) { this.preferencesChanged = preferencesChanged; }
+
+    public static DataBaseHelper getDataBaseHelper(){ return dataBaseHelper; }
 }
