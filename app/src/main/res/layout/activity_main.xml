@@ -6,21 +6,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/activityMain"
-    android:background="@drawable/background_lake">
+    android:background="@drawable/lake_background">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="310dp"
+        android:layout_height="210dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        android:layout_marginBottom="40dp"
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <Button
             android:id="@+id/btnPlay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/gradient_buttons"
-            android:textSize="25dp"
+            android:textSize="@dimen/btn_text_size"
             android:text="@string/Play" />
 
         <Button
@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:background="@drawable/gradient_buttons"
-            android:textSize="25dp"
+            android:textSize="@dimen/btn_text_size"
             android:text="@string/Settings" />
 
         <Button
@@ -38,7 +38,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/gradient_buttons"
             android:layout_marginTop="30dp"
-            android:textSize="25dp"
+            android:textSize="@dimen/btn_text_size"
             android:text="@string/ResultsTable" />
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

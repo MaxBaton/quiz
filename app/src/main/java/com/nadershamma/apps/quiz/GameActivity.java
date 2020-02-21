@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.WindowManager;
 
 import com.nadershamma.apps.database.DataBaseHelper;
 import com.nadershamma.apps.eventhandlers.PreferenceChangeListener;
@@ -18,14 +19,14 @@ import com.nadershamma.apps.lifecyclehelpers.QuizViewModel;
 import java.util.Objects;
 
 public class GameActivity extends AppCompatActivity {
-   public static final String CHOICES = "pref_numberOfChoices";
-   public static final String TIMER = "pref_timeToAnswer";
-   public static final String CATEGORIES = "pref_categoriesToInclude";
-   private boolean preferencesChanged = true;
-   private GameActivityFragment gameActivityFragment;
-   private QuizViewModel quizViewModel;
-   private SharedPreferences.OnSharedPreferenceChangeListener preferencesChangeListener;
-   private static DataBaseHelper dataBaseHelper;
+    public static final String CHOICES = "pref_numberOfChoices";
+    public static final String TIMER = "pref_timeToAnswer";
+    public static final String CATEGORIES = "pref_categoriesToInclude";
+    private boolean preferencesChanged = true;
+    private GameActivityFragment gameActivityFragment;
+    private QuizViewModel quizViewModel;
+    private SharedPreferences.OnSharedPreferenceChangeListener preferencesChangeListener;
+    private static DataBaseHelper dataBaseHelper;
 
     private void setSharedPreferences() {
         // set default settings
@@ -54,23 +55,24 @@ public class GameActivity extends AppCompatActivity {
     }
 
     @Override
- protected void onCreate(Bundle savedInstanceState) {
-     super.onCreate(savedInstanceState);
-     quizViewModel = ViewModelProviders.of(this).get(QuizViewModel.class);
-     preferencesChangeListener = new PreferenceChangeListener(this);
-     setContentView(R.layout.fragment_game);
-     Toolbar toolbar = findViewById(R.id.toolbar);
-     setSupportActionBar(toolbar);
-     Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
-     setSharedPreferences();
-     dataBaseHelper = new DataBaseHelper(this);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        quizViewModel = ViewModelProviders.of(this).get(QuizViewModel.class);
+        preferencesChangeListener = new PreferenceChangeListener(this);
+        setContentView(R.layout.fragment_game);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        setSharedPreferences();
+        dataBaseHelper = new DataBaseHelper(this);
     }
 
     @Override
-  protected void onStart() {
-      super.onStart();
-      ifPreferenceChanged();
-  }
+    protected void onStart() {
+        super.onStart();
+        ifPreferenceChanged();
+    }
 
 
     @Override
@@ -82,17 +84,17 @@ public class GameActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-       switch (id) {
-           case R.id.reference:
-               gameActivityFragment.stopTimer();
-               ReferenceFragment referenceFragment = new ReferenceFragment();
-               referenceFragment.show(getSupportFragmentManager(),"reference");break;
-           case R.id.settings:
-               gameActivityFragment.stopTimer();
-               Intent settingsIntent = new Intent(this, SettingsActivity.class);
-               startActivity(settingsIntent);break;
-       }
-      return super.onOptionsItemSelected(item);
+        switch (id) {
+            case R.id.reference:
+                gameActivityFragment.stopTimer();
+                ReferenceFragment referenceFragment = new ReferenceFragment();
+                referenceFragment.show(getSupportFragmentManager(),"reference");break;
+            case R.id.settings:
+                gameActivityFragment.stopTimer();
+                Intent settingsIntent = new Intent(this, SettingsActivity.class);
+                startActivity(settingsIntent);break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
