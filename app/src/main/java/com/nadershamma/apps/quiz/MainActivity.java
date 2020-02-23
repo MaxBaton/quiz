@@ -34,7 +34,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Map<String,Object> map;
     private SharedPreferences preferences;
     private WarningCategories warningCategories;
-    private GameActivity gameActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +49,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         dataBaseHelper = new DataBaseHelper(this);
         sqLiteDatabase = dataBaseHelper.getWritableDatabase();
         warningCategories = new WarningCategories();
-        gameActivity = new GameActivity();
     }
 
     @Override
