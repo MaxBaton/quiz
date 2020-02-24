@@ -14,12 +14,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.nadershamma.apps.database.DataBaseHelper;
 import com.nadershamma.apps.database.Fields;
 
 import java.util.HashSet;
 import java.util.Map;
+import java.util.Objects;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
@@ -57,7 +59,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
         map = (Map<String, Object>) preferences.getAll();
         categories = (HashSet<String>) map.get("pref_categoriesToInclude");
-        sizeCategories = categories.size();
+        sizeCategories = Objects.requireNonNull(categories).size();
         if (sizeCategories == 0) {
             categories.add(getString(R.string.default_category));
             warningCategories.show(getSupportFragmentManager(), "warning");
